@@ -1,0 +1,22 @@
+import { useState } from "react";
+import { db } from "../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+export default function Home() {
+  const [trackingId, setTrackingId] = useState("");
+  const [shipment, setShipment] = useState(null);
+
+  const handleSearch = async () => {
+    const docRef = doc(db, "shipments", trackingId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setShipment(docSnap.data());
+    } else {
+      alert("Shipment not found");
+    }
+  };
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>RP
