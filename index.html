@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RPJ Shipment Tracking</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 50px;
+      background: #f4f4f4;
+    }
+    input {
+      padding: 10px;
+      width: 250px;
+    }
+    button {
+      padding: 10px;
+      background: green;
+      color: white;
+      border: none;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>RPJ Shipment Tracking</h1>
+  <p>Enter your Shipment ID</p>
+
+  <input type="text" id="trackingInput" placeholder="RPJ-AIR-001">
+  <button onclick="trackShipment()">Track</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    const shipments = {
+      "RPJ-AIR-001": {
+        status: "In Transit",
+        location: "China",
+        eta: "April 30"
+      }
+    };
+
+    function trackShipment() {
+      const id = document.getElementById("trackingInput").value;
+      const shipment = shipments[id];
+
+      if (shipment) {
+        document.getElementById("result").innerHTML =
+          "Status: " + shipment.status + "<br>" +
+          "Location: " + shipment.location + "<br>" +
+          "ETA: " + shipment.eta;
+      } else {
+        document.getElementById("result").innerHTML =
+          "Shipment not found.";
+      }
+    }
+  </script>
+
+</body>
+  </html>
